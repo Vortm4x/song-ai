@@ -1,18 +1,13 @@
 <!-- song-result.ejs -->
-<div class="container">
-    <h1>
-        <%= title %>
-    </h1>
-    <p>
-        <%= lyrics %>
-    </p>
-    <div class="button-row">
-        <form action="/songs/save" method="POST">
-            <input type="hidden" name="title" value="<%= title %>">
-            <input type="hidden" name="lyrics" value="<%= lyrics %>">
-            <button class="button" type="submit">OK</button>
-        </form>
-        <a href="/songs/retry" class="button">Retry</a>
-        <a href="/songs/cancel" class="button">Cancel</a>
-    </div>
+<h1 class="song-title"><%= title %></h1>
+<p class="song-lyrics"><%= lyrics %></p>
+
+<div class="button-row dialog-row">
+  <form action="/songs/save" method="POST">
+    <input type="hidden" name="title" value="<%= title %>">
+    <input type="hidden" name="lyrics" value="<%= lyrics %>">
+    <button class="button" type="submit">OK</button>
+  </form>
+  <a href="/songs/retry" class="button">Retry</a>
+  <a href="/songs/cancel" class="button">Cancel</a>
 </div>

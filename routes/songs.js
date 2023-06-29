@@ -12,11 +12,11 @@ router.get('/new', (req, res) => {
 
 // Create a new song - POST
 router.post('/new', async (req, res) => {
-  const { title, prompt } = req.body;
+  const { title, prompt, rows } = req.body
 
   try {
     // Generate song lyrics using the AI model
-    const lyrics = await generateSongLyrics(prompt);
+    const lyrics = await generateSongLyrics(prompt, parseInt(rows));
 
     // Save the song data to the session
     req.session.songData = { title, lyrics };
@@ -33,15 +33,13 @@ router.post('/new', async (req, res) => {
 router.get('/result', (req, res) => {
   const { title, lyrics } = req.session.songData || {};
 
-  // Clear the song data from the session
-  delete req.session.songData;
-
   if (!title || !lyrics) {
     // Redirect to the song creation page if the song data is not available
+    delete req.session.songData;
     res.redirect('/songs/new');
   } else {
     const loggedIn = req.session.user ? true : false;
-    res.render('song-result', { title, lyrics });
+    res.render('layout', { loggedIn, title, lyrics, main: 'song-result' });
   }
 });
 
@@ -57,25 +55,29 @@ router.post('/save', async (req, res) => {
       lyrics,
       user : req.session.user._id,
     });
-
     // Save the song to the database
     await song.save();
-
+  
     // Redirect to the song details page
+    // Clear the song data from the session
+    delete req.session.songData;
     res.redirect(`/songs/${song._id}`);
   } catch (error) {
     console.error('Error saving song:', error);
+    delete req.session.songData;
     res.redirect('/songs/new');
   }
 });
 
 // Redirect to the song creation page
 router.get('/retry', (req, res) => {
+  delete req.session.songData;
   res.redirect('/songs/new');
 });
 
 // Redirect to the songs list page
 router.get('/cancel', (req, res) => {
+  delete req.session.songData;
   res.redirect('/songs/list');
 });
 

@@ -1,10 +1,10 @@
 <!-- new-song.ejs -->
-<div class="container">
-  <h1>Create a New Song</h1>
-  <form action="/songs/new" method="POST">
-    <input type="text" name="title" placeholder="Song Title" required>
-    <textarea name="prompt" placeholder="Lyrics prompt: what does the song should be about" required></textarea>
-    <input type="number" name="rows" id="rows" min="1" max="250" value="16" required>
-    <button class="create-song-button" type="submit">Create Song</button>
-  </form>
-</div>
+<h1>Create a New Song</h1>
+<form action="/songs/new" method="POST" class="form">
+  <div class="input-row">
+    <input type="text" name="title" placeholder="Song Title" required class="input-text">
+    <input type="number" name="rows" placeholder="Row count" min="1" max="250" value="" required class="input-rows">
+  </div>
+  <textarea name="prompt" placeholder="Lyrics prompt: what does the song should be about" required class="textarea"></textarea>
+  <button class="button create-song-button" type="submit">Create Song</button>
+</form>

@@ -5,12 +5,17 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function generateSongLyrics(prompt, rows=10) {
+async function generateSongLyrics(prompt, rows) {
   const completion = await openai.createCompletion({
-    model: 'text-ada-001',
-    prompt: `Imagine you are a songwriter. Generate song lyrics about ${prompt}. Give all song lyrisc, every row, separated by linebrake.`,
-    n: rows,
+    model: 'text-davinci-003',
+    prompt: `
+Generate song lyrics about ${prompt}. 
+Song size sholud be ${rows} rows. 
+Every completion is separate song row. 
+Every row should be separated by linebrake. 
+Provide the lyrics without any extra information.`,
     temperature: 0.6,
+    max_tokens: 1000,
   });
 
   const choices = completion.data.choices;

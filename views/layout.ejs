@@ -6,22 +6,22 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <header>
+  <header class="header">
     <nav>
       <a href="/" class="logo">SONG.AI</a>
       <div class="navigation">
         <% if (!loggedIn) { %>
-          <a href="/auth/login">Login</a>
-          <a href="/auth/signup">Sign Up</a>
+          <a href="/auth/login" class="link">Login</a>
+          <a href="/auth/signup" class="link">Sign Up</a>
         <% } else { %>
-          <a href="/songs/new">Create Song</a>
-          <a href="/songs/list">Songs List</a> <!-- Added link to the songs list -->
-          <a href="/auth/logout">Logout</a>
+          <a href="/songs/new" class="link">Create Song</a>
+          <a href="/songs/list" class="link">Songs List</a> <!-- Added link to the songs list -->
+          <a href="/auth/logout" class="link">Logout</a>
         <% } %>
       </div>
     </nav>
   </header>
-  <main>
+  <main class="main">
     <%- include(main) %>
   </main>
 </body>

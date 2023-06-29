@@ -1,8 +1,8 @@
 <!-- login.ejs -->
 <h1 class="auth-title">Log In</h1>
 <form action="/auth/login" method="POST" class="auth-form">
-    <input type="text" name="username" placeholder="Username" class="auth-input">
-    <input type="password" name="password" placeholder="Password" class="auth-input">
+    <input type="text" name="username" placeholder="Username" class="auth-input" required>
+    <input type="password" name="password" placeholder="Password" class="auth-input" required>
     <button type="submit" class="auth-button">Log In</button>
 </form>
 <p class="auth-message">Don't have an account? <a href="/auth/signup">Sign up</a></p>

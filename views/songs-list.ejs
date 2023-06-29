@@ -1,0 +1,10 @@
+<!-- songs-list.ejs -->
+<div class="container">
+  <h1>Song List</h1>
+  <% songs.forEach(song => { %>
+    <div class="song">
+      <h2><%= song.title %></h2>
+      <a href="/songs/<%= song._id %>">View Details</a>
+    </div>
+  <% }) %>
+</div>
